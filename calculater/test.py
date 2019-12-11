@@ -29,55 +29,77 @@ class WindowClass(QMainWindow, form_class) :
         self.pb_8.clicked.connect(self.print8)
         self.pb_9.clicked.connect(self.print9)
         self.pb_enter.clicked.connect(self.printEnter)
+        self.result = ""
         self.list = []
+        self.quest = 1
+        self.answer = 0
 
     def printAdd(self):
-        self.list.append("+")
-        self.label_2.setText(str(self.list))
+        if self.quest == 0:
+            self.list.append("+")
+            self.addtoresult()
+        self.quest += 1
     def printSubtract(self):
-        self.list.append("-")
-        self.label_2.setText(str(self.list))
+        if self.quest == 0:
+            self.list.append("-")
+            self.addtoresult()
+        self.quest += 1
     def printMultiply(self):
-        self.list.append("*")
-        self.label_2.setText(str(self.list))
+        if self.quest == 0:
+            self.list.append("*")
+            self.addtoresult()
+        self.quest += 1
     def printDivide(self):
-        self.list.append("%")
-        self.label_2.setText(str(self.list))
+        if self.quest == 0:
+            self.list.append("%")
+            self.addtoresult()
+        self.quest += 1
     def printReset(self):
 
-        self.list.clear()
-        self.list.append("0")
-        self.label_2.setText(str(self.list))
+        self.result = ""
+        self.label_2.setText(self.result)
     def print1(self):
         self.list.append("1")
-        self.label_2.setText(str(self.list))
+        self.addtoresult()
+        self.quest = 0
     def print2(self):
         self.list.append("2")
-        self.label_2.setText(str(self.list))
+        self.addtoresult()
+        self.quest = 0
     def print3(self):
         self.list.append("3")
-        self.label_2.setText(str(self.list))
+        self.addtoresult()
+        self.quest = 0
     def print4(self):
         self.list.append("4")
-        self.label_2.setText(str(self.list))
+        self.addtoresult()
+        self.quest = 0
     def print5(self):
         self.list.append("5")
-        self.label_2.setText(str(self.list))
+        self.addtoresult()
+        self.quest = 0
     def print6(self):
         self.list.append("6")
-        self.label_2.setText(str(self.list))
+        self.addtoresult()
+        self.quest = 0
     def print7(self):
         self.list.append("7")
-        self.label_2.setText(str(self.list))
+        self.addtoresult()
+        self.quest = 0
     def print8(self):
         self.list.append("8")
-        self.label_2.setText(str(self.list))
+        self.addtoresult()
+        self.quest = 0
     def print9(self):
         self.list.append("9")
-        self.label_2.setText(str(self.list))
+        self.addtoresult()
+        self.quest = 0
     def printEnter(self):
-        self.label_2.setText(str(self.list))
-
+        self.label_2.setText(str(eval(self.result)))
+        self.result = ""
+    def addtoresult(self):
+        self.result += str(self.list[len(self.list) - 1])
+        self.label_2.setText(self.result)
 
 if __name__ == "__main__" :
     app = QApplication(sys.argv)
